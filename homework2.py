@@ -30,8 +30,7 @@ print('square = ',square)
 
 # 7. *Write a Python-script that calculates the sum of the digits of a number  task 7-8
 # 8. *Determine the number of digits in a number
-numb=input('Number :' )
-str1=str(numb)
+str1=input('Number :' )
 l=len(str1)
 i=0
 s=0
