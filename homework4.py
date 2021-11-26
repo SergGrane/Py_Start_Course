@@ -1,15 +1,15 @@
 # Дано четырехзначное число. Проверить, является ли оно «счастливым билетом».  task 1
 
 ticket_number=list(input('Enter ticket number '))
-l = int(len(ticket_number))
+l_s = int(len(ticket_number))
 
 if l%2==0:
     i=0
     sum1=0
     sum2=0
-    while i<(l/2):
+    while i<(l_s/2):
         sum1=sum1+int(ticket_number[i])
-        sum2=sum2+int(ticket_number[i+int(l/2)])
+        sum2=sum2+int(ticket_number[i+int(l_s/2)])
         i=i+1
     if sum1==sum2: print('Happy ticket!')
     else:
