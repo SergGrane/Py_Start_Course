@@ -70,7 +70,6 @@ print('Min word is ',w)
 # а второй закрывающий. - тэг внутри себя, может содержать кучу доп. информации. Например
 # <div id="rcnt" style="clear:both;position:relative;zoom:1">           task 2+
 
-# Note: очистка от тегов и от данных внутри тегов
 Text='tqwtqetqewtqewtqe <erwtyerwytr> wewewewewewew1 <wewewe> ewewe2'
 
 str_new=''
