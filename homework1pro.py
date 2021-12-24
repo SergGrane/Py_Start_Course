@@ -14,7 +14,8 @@ class Goods:
 
 
     def __str__(self):
-        return f'Name:  {self.name} Price: {self.price}  Decriptiont: {self.description} {self.num_of_goods}'
+        return f'Name:  {self.name} Price: {self.price}  Decriptiont: {self.description} '
+
 
 class Customer:
     """
@@ -31,45 +32,40 @@ class Customer:
     def __str__(self):
         return f'Name:  {self.name}  {self.surname}  Phone number: {self.phone_number} E-mail: {self.mail}'
 
+    def __repr__(self):
+        return str(self.__dict__)
+
 class Order:
     """
     Order of nternet-shop
     """
-    def __init__(self, ord_number, order_date, cust_name, cust_surname, address, goods_and_q_ty: list):
+    def __init__(self, ord_number, order_date, customer: Customer, products=None ):
         self.ord_number=ord_number
         self.order_date=order_date
-        self.cust_name=cust_name
-        self.cust_surname=cust_surname
-        self.address=address
-        self.goods_and_q_ty=goods_and_q_ty
+        self.customer=customer
+        self.products=products
 
     def __str__(self):
-        res = '\n'.join(map(str, self.goods_and_q_ty))
-        return f'Order number: {self.ord_number}, Order date: {self.order_date}, Customer name: {self.cust_name}, {self.cust_surname}, Delivery address: {self.address} ' \
-               f'\nPart number & quality:\n{res}'
+        res ='\n'.join(map(str, self.products))
+        return f'{self.ord_number} {self.customer}\n{res} \nTotal price :{self.total_price()} UAH '
 
-list_g = []
-
-goods1 = Goods('1001', 'phone', 9000, '456', '120', '10', 'Nokia phone....')
-Goods.num_of_goods+=1
-list_g.append(goods1.__dict__)
-goods2 = Goods('1002', 'phone', 9123 , '340', '100', '8', 'Samsung phone....')
-Goods.num_of_goods+=1
-list_g.append(goods2.__dict__)
-goods3 = Goods('1003', 'phone', 3213 , '340', '80', '8', 'Xmmx phone....')
-Goods.num_of_goods+=1
-list_g.append(goods3.__dict__)
-
-customer1 = Customer('Basil', 'Pupking', '102', 'Basil@gmale.net', 'passw', 'login')
+    def total_price(self):
+        s=0
+        for item in self.products:
+            s += item.price
+        return s
 
 
-order1 = Order('2341', '01.01.2022', 'Basil', 'Pupking', 'Petrovka 38', [('1001', 1), ('1002', 2)])
+if __name__ == '__main__':
+    goods1 = Goods('1001', 'phone', 9000, '456', '120', '10', 'Nokia phone....')
+    goods2 = Goods('1002', 'phone', 9123 , '340', '100', '8', 'Samsung phone....')
+    goods3 = Goods('1003', 'phone', 3213 , '340', '80', '8', 'Xmmx phone....')
+    customer1 = Customer('Basil', 'Pupking', '102', 'Basil@gmale.net', 'passw', 'login')
+    print(customer1)
+    order1 = Order('2341', '01.01.2022', customer1,[goods1,goods2,goods1] )
+    order1.products.append(goods3)
+    print(order1)
 
-sum=0
 
-for j in order1.goods_and_q_ty :
-    for i in list_g:
-        if j[0]==i.get('partnumber'):
-            sum = sum+ j[1]*i.get('price')
 
-print('Sum of the order :', sum, ' UAH')
+
