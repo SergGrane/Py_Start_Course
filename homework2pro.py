@@ -12,7 +12,8 @@ if __name__ == '__main__':
     student3 = Student('Vasja', 'Pupkin', '12.21', 'power stations')
     print(student1)
 
-    group1=Group( [student1, student2], '112-1')
+    group1=Group(student1, '112-1')
+
     group1.add_student(student2)
     group1.add_student(student3)
     group1.del_student(student1)
