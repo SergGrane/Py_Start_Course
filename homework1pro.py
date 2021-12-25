@@ -4,7 +4,14 @@ class Goods:
     """
     num_of_goods=0
     def __init__(self, partnumber, name , price, weight, height, width, description):
-        self.partnumber=partnumber
+
+        if not isinstance(price, ( int,float )):
+            raise TypeError('Price is not a number ')
+
+        if price < 0:
+            raise ValueError('Price is negative ')
+
+        self.partnumber= partnumber
         self.name=name
         self.price=price
         self.weight=weight
@@ -57,7 +64,7 @@ class Order:
 
 
 if __name__ == '__main__':
-    goods1 = Goods('1001', 'phone', 9000, '456', '120', '10', 'Nokia phone....')
+    goods1 = Goods('1001', 'phone','qwqw', '456', '120', '10', 'Nokia phone....')
     goods2 = Goods('1002', 'phone', 9123 , '340', '100', '8', 'Samsung phone....')
     goods3 = Goods('1003', 'phone', 3213 , '340', '80', '8', 'Xmmx phone....')
     customer1 = Customer('Basil', 'Pupking', '102', 'Basil@gmale.net', 'passw', 'login')
