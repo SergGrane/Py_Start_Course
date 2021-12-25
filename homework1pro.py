@@ -5,11 +5,20 @@ class Goods:
     num_of_goods=0
     def __init__(self, partnumber, name , price, weight, height, width, description):
 
-        if not isinstance(price, ( int,float )):
-            raise TypeError('Price is not a number ')
 
-        if price < 0:
-            raise ValueError('Price is negative ')
+        try:
+            if not isinstance(price, ( int,float )):
+                raise TypeError
+        except TypeError:
+            print ('Price is not a number ')
+            return
+
+        try:
+            if price < 0:
+                raise ValueError
+        except ValueError:
+            print ('Price is negative ')
+            return
 
         self.partnumber= partnumber
         self.name=name
@@ -64,12 +73,12 @@ class Order:
 
 
 if __name__ == '__main__':
-    goods1 = Goods('1001', 'phone','qwqw', '456', '120', '10', 'Nokia phone....')
+    goods1 = Goods('1001', 'phone', 'qq', '456', '120', '10', 'Nokia phone....')
     goods2 = Goods('1002', 'phone', 9123 , '340', '100', '8', 'Samsung phone....')
     goods3 = Goods('1003', 'phone', 3213 , '340', '80', '8', 'Xmmx phone....')
     customer1 = Customer('Basil', 'Pupking', '102', 'Basil@gmale.net', 'passw', 'login')
     print(customer1)
-    order1 = Order('2341', '01.01.2022', customer1,[goods1,goods2,goods1] )
+    order1 = Order('2341', '01.01.2022', customer1,[goods2,goods2,goods3] )
     order1.products.append(goods3)
     print(order1)
 
